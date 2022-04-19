@@ -1,0 +1,100 @@
+﻿@page "/Delete/{EmployeeId}"
+
+@using CommonLayer.Models
+@using BusinessLayer.Interface
+@using System.Threading
+
+@inject IEmployeeRegisterBL employeeBL
+@inject NavigationManager navigate
+
+<!--Creating the header element with logo and text using flex and css for homepage(UC14)-->
+<header class="header-content header">
+    <div class="logo-content">
+        <img src="./assets/images/logo.png" alt="Logo" />
+        <div class="emp_text">
+            <span><a href="HomePage">Employee</a></span><br>
+            <span class="emp_text_payroll">Payroll</span>
+        </div>
+    </div>
+</header>
+<div class="form-content">
+    <form class="form">
+        <EditForm Model="@employee">
+            <span class="form-head">Are you sure you want to delete employee..?</span>
+            <div class="row-content">
+                <label class="del-label">Employee ID : &nbsp</label>
+                <label class="label label-text"> @employee.Id</label>
+            </div>
+            <div class="row-content">
+                <label class="del-label">Name : &nbsp</label>
+                <label class="label label-text"> @employee.Name</label>
+            </div>
+            <div class="row-content">
+                <label class="del-label">Gender : &nbsp</label>
+                <label class="label label-text"> @employee.Gender</label>
+            </div>
+            <div class="row-content">
+                <label class="del-label">Start Date : &nbsp</label>
+                <label class="label label-text"> @employee.Date</label>
+            </div>
+            <div class="row-content">
+                <label class="del-label">Department : &nbsp</label>
+                <label class="label label-text"> @employee.Department</label>
+            </div>
+            <div class="row-content">
+                <label class="del-label">Notes : &nbsp</label>
+                <label class="label label-text"> @employee.Notes</label>
+            </div>
+            <div class="button_container">
+                <div class="buttons">
+                    <button type="submit" @onclick="@DeleteEmployee" class="cancel_button button" id="submitButton">Delete</button>
+                    <button type="button" @onclick="@Cancel" class="submit_button button">Cancel</button>
+                </div>
+                <MatSnackbar @bind-IsOpen="snackBarCancel">
+                    <a href="HomePage">
+                        <MatSnackbarContent>Canceled....Click To Return To Home Page...!!!</MatSnackbarContent>
+                    </a>
+                </MatSnackbar>
+                <MatSnackbar @bind-IsOpen="@snackBarDelete">
+                    <a href="HomePage">
+                        <MatSnackbarContent>Deleted The Employee Successfully...!!!</MatSnackbarContent>
+                    </a>
+                </MatSnackbar>
+            </div>
+        </EditForm>
+    </form>
+</div>
+
+@code {
+    bool snackBarDelete = false;
+    bool snackBarCancel = false;
+    [Parameter]
+    public string EmployeeId { get; set; }
+
+    EmployeeModel employee = new EmployeeModel();
+
+    protected override async Task OnInitializedAsync()
+    {
+        employee = await Task.Run(() => employeeBL.GetEmployee(Convert.ToInt32(EmployeeId)));
+    }
+
+    protected void DeleteEmployee()
+    {
+        employeeBL.DeleteEmployee(employee.Id);
+        snackBarDelete = true;
+        this.StateHasChanged();
+        // GoBack();
+    }
+
+    void Cancel()
+    {
+        snackBarCancel = true;
+        this.StateHasChanged();
+    }
+
+    void GoBack()
+    {
+        Thread.Sleep(5000);
+        navigate.NavigateTo("HomePage");
+    }
+}

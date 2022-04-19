@@ -1,0 +1,157 @@
+﻿@page "/Register"
+@using CommonLayer.Models;
+@using BusinessLayer.Interface;
+@using MatBlazor;
+@using System.Threading
+
+@inject IEmployeeRegisterBL employeeBL;
+@inject NavigationManager navigate;
+
+
+<!--Creating the header element with logo and text using flex and css for homepage(UC14)-->
+<header class="header-content header">
+    <div class="logo-content">
+        <img src="./assets/images/logo.png" alt="Logo" />
+        <div class="emp_text">
+            <span><a href="HomePage">Employee</a></span><br>
+            <span class="emp_text_payroll">Payroll</span>
+        </div>
+    </div>
+</header>
+
+<!--Creating the form element with input name-->
+<div class="form-content">
+    <form class="form">
+        <EditForm Model="@employee" OnSubmit="@AddEmp">
+            <span class="form-head">Employee Payroll Register</span>
+            <div class="row-content">
+                <label class="label text label-bold" for="empName">Employee Name</label>
+                <input type="text" class="input" name="empName" @bind-value="@employee.Name" id="empName" placeholder="Enter Your Name Here..." required>
+                <error class="error" id="errorName"></error>
+            </div>
+            <!--Creating the form element with input type radio to select profile pic-->
+            <div class="row-content">
+                <label class="label text label-bold" for="profiles">Profile Image</label>
+                <div class="profile-checkbox-content">
+                    <label>
+                        <input type="checkbox" id="profile1" name="profile" value="./assets/profile-images/Ellipse -1.png" @onchange="@(()=> AddImg("./assets/profile-images/Ellipse -1.png"))" />
+                        <img class="profile" , id="img1" src="./assets/profile-images/Ellipse -1.png" />
+                    </label>
+                    <label>
+                        <input type="checkbox" id="profile2" name="profile" value="./assets/profile-images/Ellipse -2.png" @onchange="@(()=> AddImg("./assets/profile-images/Ellipse -2.png"))" />
+                        <img class="profile" , id="img2" src="./assets/profile-images/Ellipse -2.png" />
+                    </label>
+                    <label>
+                        <input type="checkbox" id="profile3" name="profile" value="./assets/profile-images/Ellipse -3.png" @onchange="@(()=> AddImg("./assets/profile-images/Ellipse -3.png"))" />
+                        <img class="profile" , id="img3" src="./assets/profile-images/Ellipse -3.png" />
+                    </label>
+                    <label>
+                        <input type="checkbox" id="profile4" name="profile" value="./assets/profile-images/Ellipse -4.png" @onchange="@(()=> AddImg("./assets/profile-images/Ellipse -4.png"))" />
+                        <img class="profile" , id="img4" src="./assets/profile-images/Ellipse -4.png" />
+                    </label>
+                </div>
+            </div>
+            <!--Creating the form element with input type radio to select gender-->
+            <div class="row-content">
+                <label class="label text label-bold" for="gender">Gender</label>
+                <select class="ip" name="gender" id="gender" @bind="@employee.Gender" required>
+                    <option class="option" value="--">-- Select Gender --</option>
+                    <option class="option" value="Male">Male</option>
+                    <option class="option" value="Female">Female</option>
+                    <option class="option" value="Other">Other</option>
+                </select>
+            </div>
+
+            <!--Creating the form element with input type checkbox to select department-->
+            <div class="row-content">
+                <label class="label text label-bold" for="department"> Department</label>
+                <select class="ip" name="department" id="department" @bind="@employee.Department" required>
+                    <option class="option" value="--">-- Select Department --</option>
+                    <option class="option" value="Robotics">Robotics</option>
+                    <option class="option" value="Devops">Devops</option>
+                    <option class="option" value="Web Developer">Web Developer</option>
+                    <option class="option" value="Finance">Finance</option>
+                    <option class="option" value="Business">Business</option>
+                    <option class="option" value="HR">HR</option>
+                    <option class="option" value="ML">Machine Learning</option>
+                </select>
+            </div>
+
+            <!--Creating the form element with input type range to select salary(UC4)-->
+            <div class="row-content">
+                <label class="label text label-bold" for="salary">Salary</label>
+                <input class="input input-salary" @bind="@employee.Salary" type="number" defaultvalue="360000" min="200000" max="800000" step="1000" required>
+                <error class="error" id="errorName"></error>
+            </div>
+
+            <!--Creating the form element with select to select day, month and year(UC5)-->
+            <di1a4v class="row-content">
+                <label class="label text label-bold" for="startDate">Start Date</label>
+                <input class="input input-salary" @bind="@employee.StartDate" type="date" placeholder="" s />
+                <error id="errorDate" class="error errorDate" name="errorDate"></error>
+            </di1a4v>
+
+            <!--Creating the form element with notes and buttons(UC6)-->
+            <div class="row-content">
+                <label class="label text label-bold" for="notes">Notes</label>
+                <textarea rows="4" class="input" @bind="@employee.Notes" placeholder="Enter Any Notes or Comments here" id="notes" style="height: 100px;" required></textarea>
+            </div>
+            <div class="button_container">
+                <a @onclick="@Cancel" class="button cancel_button">Cancel</a>
+                <div class="buttons">
+                    <button type="submit" class="submit_button button" id="submitButton">Submit</button>
+                    <button @onclick="@Reset" type="reset" class="reset_button button">Reset</button>
+                </div>
+                <MatSnackbar @bind-IsOpen="@snackBarCancel">
+                    <a href="HomePage">
+                        <MatSnackbarContent>Canceled....Click To Return To Home Page...!!!</MatSnackbarContent>
+                    </a>
+                </MatSnackbar>
+                <MatSnackbar @bind-IsOpen="@snackBarSubmit">
+                    <a href="HomePage">
+                        <MatSnackbarContent>Employee Registered Succesfully....!!!</MatSnackbarContent>
+                    </a>
+                </MatSnackbar>
+                <MatSnackbar @bind-IsOpen="@snackBarReset">
+                        <MatSnackbarContent>Reseted Employee Data...!!!</MatSnackbarContent>
+                </MatSnackbar>
+            </div>
+        </EditForm>
+    </form>
+</div>
+@code {
+    bool snackBarCancel = false;
+    bool snackBarSubmit = false;
+    bool snackBarReset = false;
+    EmployeeModel employee = new EmployeeModel();
+
+    protected void AddEmp()
+    {
+        employeeBL.AddEmployee(employee);
+        snackBarSubmit = true;
+        this.StateHasChanged();
+        //Thread.Sleep(5000);
+        //navigate.NavigateTo("HomePage");
+    }
+
+    protected void AddImg(string img)
+    {
+        employee.ProfileImg = img;
+    }
+
+    void Cancel()
+    {
+        snackBarCancel = true;
+        this.StateHasChanged();
+        //Thread.Sleep(5000);
+        //navigate.NavigateTo("HomePage");
+    }
+
+    void Reset()
+    {
+        snackBarReset = true;
+        this.StateHasChanged();
+        //Thread.Sleep(5000);
+        //navigate.NavigateTo("Register");
+    }
+}
