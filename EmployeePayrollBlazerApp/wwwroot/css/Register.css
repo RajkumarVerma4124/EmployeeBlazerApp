@@ -1,4 +1,4 @@
-﻿/*Defined css properties for body,header,logo, image and text element(UC1)*/
+﻿/*Defined css properties for body,header,logo, image and text element*/
 
 * {
     box-sizing: border-box;
@@ -30,10 +30,10 @@ body {
     justify-content: start;
 }
 
-.logo-content > img {
-    border: 0px solid #82A70C;
-    margin-right: 5px;
-}
+    .logo-content > img {
+        border: 0px solid #82A70C;
+        margin-right: 5px;
+    }
 
 a {
     text-decoration: none;
@@ -58,7 +58,7 @@ a {
 }
 
 
-/*Defined css properties for form and input name(UC2)*/
+/*Defined css properties for form and input name*/
 
 .form-content {
     min-height: calc(100%-100px);
@@ -80,11 +80,11 @@ a {
     margin: 5% 0%;
 }
 
-.form:hover {
-    box-shadow: 0px 0px 15px #111;
-    transform: scale(1.01);
-    transition-duration: 0.5s;
-}
+    .form:hover {
+        box-shadow: 0px 0px 15px #111;
+        transform: scale(1.01);
+        transition-duration: 0.5s;
+    }
 
 .form-head {
     font: normal normal bold 28px/37px Roboto;
@@ -145,7 +145,7 @@ a {
 }
 
 
-/*Defined css properties for form and input name(UC3)*/
+/*Defined css properties for form and input name*/
 .profile-checkbox-content {
     display: flex;
     flex-direction: row;
@@ -171,7 +171,7 @@ a {
 }
 
 
-/*Defined css properties for form and input type radio for gender(UC4)*/
+/*Defined css properties for form and input type radio for gender*/
 
 
 .label-bold:hover {
@@ -195,29 +195,29 @@ a {
     font-weight: 500;
 }
 
-/*Defined css properties for form and input type checkbox for department(UC4)*/
+/*Defined css properties for form and input type checkbox for department*/
 
 .form_checkboxes {
     align-items: center;
     min-width: 100px;
 }
 
-.form_checkboxes > label {
-    margin: 2px;
-}
+    .form_checkboxes > label {
+        margin: 2px;
+    }
 
 
-/*Defined css properties for form and input type range for salary(UC4)*/
+/*Defined css properties for form and input type range for salary*/
 
 .salary {
     width: 70%;
 }
 
-.input-salary{
+.input-salary {
     width: 25%;
 }
 
-/*Defined css properties for select for day, month and year(UC5)*/
+/*Defined css properties for select for day, month and year*/
 
 select {
     padding: 10px 12px;
@@ -234,7 +234,7 @@ select {
 }
 
 
-/*Defined css properties for buttons and error(UC6)*/
+/*Defined css properties for buttons and error*/
 
 .button_container {
     display: flex;
@@ -261,14 +261,14 @@ select {
     text-align: center;
 }
 
-.button:hover {
-    box-shadow: 0px 0px 15px #111;
-    transform: scale(1.1);
-    transition-duration: 0.5s;
-    border: none;
-    background-color: #82A70C;
-    color: white;
-}
+    .button:hover {
+        box-shadow: 0px 0px 15px #111;
+        transform: scale(1.1);
+        transition-duration: 0.5s;
+        border: none;
+        background-color: #82A70C;
+        color: white;
+    }
 
 .submit_button {
     margin-right: 30px;
@@ -284,14 +284,14 @@ select {
     opacity: 1;
 }
 
-.cancel_button:hover {
-    box-shadow: 0px 0px 15px #111;
-    transform: scale(1.1);
-    transition-duration: 0.5s;
-    background-color: rgb(157, 84, 84);
-    color: white;
-    outline: none;
-}
+    .cancel_button:hover {
+        box-shadow: 0px 0px 15px #111;
+        transform: scale(1.1);
+        transition-duration: 0.5s;
+        background-color: rgb(157, 84, 84);
+        color: white;
+        outline: none;
+    }
 
 .reset_button:hover {
     box-shadow: 0px 0px 15px #42515F;
@@ -316,94 +316,133 @@ select {
     margin-top: 10px;
 }
 
-
-/*Defining media query(UC6)*/
-
-@media only screen and (max-width: 1050px) {
-.row-content {
-    min-width: 60px;
-    padding: 12px 12px 12px 0px;
-    display: inline-block;
-}
-
-.cancel_button {
-    margin-left: 0px;
-}
-
-.form {
-    width: 85%;
-    padding: 44px 20px;
-    padding-left: 25px;
-}
-
-.form_checkboxes {
-    margin: 5px;
-}
-}
-
-@media only screen and (max-width: 600px) {
-.form {
-    margin-top: 10px;
-}
-
-.row-content {
-    flex-direction: column;
-}
-
-.profile-radio-content {
-    margin: 5%;
-    flex-direction: column;
-    flex-flow: wrap;
-}
-
-.profile {
-    margin: 5%;
-}
-
-select {
-    margin-bottom: 10px;
-}
-
-.button_container {
-    flex-direction: column-reverse;
-    margin-top: 10px;
-    justify-content: center;
+.snackbarSubmit {
+    display: flex;
+    padding: 10px;
+    background-color: #82A70C;
+    box-shadow: 0px 3px 6px #00000029;
     align-items: center;
 }
 
-.buttons > button {
-    margin: 5px;
+.snackbarReset {
+    display: flex;
+    padding: 10px;
+    background-color: #42515F;
+    box-shadow: 0px 3px 6px #00000029;
+    align-items: center;
 }
 
-.button {
-    margin: 5px;
+.snackbarCancel {
+    display: flex;
+    padding: 10px;
+    background-color: rgb(157, 84, 84);
+    box-shadow: 0px 3px 6px #00000029;
+    align-items: center;
 }
 
-.form_checkboxes {
-    margin: 5px;
+.icon {
+    color: #f7f7f7;
+    margin-left: 3px;
 }
+
+/*Defining media query(UC6)*/
+@media only screen and (max-width: 1200px) {
+    .row-content {
+        min-width: 60px;
+        padding: 12px 12px 12px 0px;
+        display: inline-block;
+    }
+
+    .cancel_button {
+        margin-left: 0px;
+    }
+
+    .form {
+        width: 85%;
+        padding: 44px 20px;
+        padding-left: 25px;
+    }
+
+    .form_checkboxes {
+        margin: 5px;
+    }
+
+    .input-salary {
+        width: 75%;
+    }
+
+    .button {
+        margin: 10px;
+    }
+}
+
+@media only screen and (max-width: 600px) {
+    .form {
+        margin-top: 10px;
+    }
+
+    .row-content {
+        flex-direction: column;
+    }
+
+    .profile-checkbox-content {
+        margin: 5%;
+        flex-direction: column;
+        flex-flow: wrap;
+    }
+
+    .profile {
+        margin: 5%;
+    }
+
+    select {
+        margin-bottom: 10px;
+    }
+
+    .button_container {
+        flex-direction: column-reverse;
+        margin-top: 10px;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .buttons > button {
+        margin: 5px;
+    }
+
+    .button {
+        margin: 5px;
+    }
+
+    .form_checkboxes {
+        margin: 5px;
+    }
+
+    .input-salary {
+        width: 75%;
+    }
 }
 
 @media only screen and (max-width: 410px) {
-.button {
-    display: block;
-    margin: 5px;
-}
+    .button {
+        display: block;
+        margin: 5px;
+    }
 
-select {
-    display: block;
-    margin: 5px;
-}
+    select {
+        display: block;
+        margin: 5px;
+    }
 }
 
 @media only screen and (max-width: 380px) {
-.button {
-    display: block;
-    margin: 5px;
-}
+    .button {
+        display: block;
+        margin: 5px;
+    }
 
-select {
-    display: block;
-    margin: 5px;
-}
+    select {
+        display: block;
+        margin: 5px;
+    }
 }

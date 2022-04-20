@@ -7,6 +7,9 @@ using System.Text;
 
 namespace BusinessLayer.Services
 {
+    /// <summary>
+    /// Created The EmployeeRegister Business Layer Class To Implement IEmployeeRegisterBL Methods
+    /// </summary>
     public class EmployeeRegisterBL : IEmployeeRegisterBL
     {
         /// <summary>
@@ -23,6 +26,11 @@ namespace BusinessLayer.Services
             this.employeeRL = employeeRL;
         }
 
+        /// <summary>
+        /// Method To Return Repo Layer AddEmployee Method
+        /// </summary>
+        /// <param name="employee"></param>
+        /// <returns></returns>
         public EmployeeModel AddEmployee(EmployeeModel employee)
         {
             try
@@ -35,6 +43,10 @@ namespace BusinessLayer.Services
             }
         }
 
+        /// <summary>
+        /// Method To Return Repo Layer GetAllEmployee Method
+        /// </summary>
+        /// <returns></returns>
         public IEnumerable<EmployeeModel> GetAllEmployee()
         {
             try
@@ -47,6 +59,11 @@ namespace BusinessLayer.Services
             }
         }
 
+        /// <summary>
+        /// Method To Return Repo Layer GetEmployee Method
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public EmployeeModel GetEmployee(int id)
         {
             try
@@ -59,6 +76,11 @@ namespace BusinessLayer.Services
             }
         }
 
+        /// <summary>
+        /// Method To Return Repo Layer UpdateEmployee Method
+        /// </summary>
+        /// <param name="employee"></param>
+        /// <returns></returns>
         public string UpdateEmployee(EmployeeModel employee)
         {
             try
@@ -71,6 +93,11 @@ namespace BusinessLayer.Services
             }
         }
 
+        /// <summary>
+        /// Method To Return Repo Layer DeleteEmployee Method
+        /// </summary>
+        /// <param name="employee"></param>
+        /// <returns></returns>
         public string DeleteEmployee(int id)
         {
             try
@@ -82,6 +109,5 @@ namespace BusinessLayer.Services
                 throw ex;
             }
         }
-
     }
 }

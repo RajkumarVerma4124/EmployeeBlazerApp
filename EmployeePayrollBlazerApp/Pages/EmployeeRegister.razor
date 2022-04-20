@@ -22,8 +22,10 @@
 <!--Creating the form element with input name-->
 <div class="form-content">
     <form class="form">
-        <EditForm Model="@employee" OnSubmit="@AddEmp">
+        <EditForm Model="@employee" OnValidSubmit="@(() => { AddEmp(); HandleValidSubmit(); })">
             <span class="form-head">Employee Payroll Register</span>
+            <DataAnnotationsValidator />
+            <ValidationSummary />
             <div class="row-content">
                 <label class="label text label-bold" for="empName">Employee Name</label>
                 <input type="text" class="input" name="empName" @bind-value="@employee.Name" id="empName" placeholder="Enter Your Name Here..." required>
@@ -97,61 +99,88 @@
                 <textarea rows="4" class="input" @bind="@employee.Notes" placeholder="Enter Any Notes or Comments here" id="notes" style="height: 100px;" required></textarea>
             </div>
             <div class="button_container">
-                <a @onclick="@Cancel" class="button cancel_button">Cancel</a>
+                <a href="HomePage" @onclick="@Cancel" class="button cancel_button">Cancel</a>
                 <div class="buttons">
                     <button type="submit" class="submit_button button" id="submitButton">Submit</button>
                     <button @onclick="@Reset" type="reset" class="reset_button button">Reset</button>
                 </div>
-                <MatSnackbar @bind-IsOpen="@snackBarCancel">
-                    <a href="HomePage">
-                        <MatSnackbarContent>Canceled....Click To Return To Home Page...!!!</MatSnackbarContent>
-                    </a>
-                </MatSnackbar>
                 <MatSnackbar @bind-IsOpen="@snackBarSubmit">
-                    <a href="HomePage">
-                        <MatSnackbarContent>Employee Registered Succesfully....!!!</MatSnackbarContent>
+                    <a href="HomePage" class="snackbarSubmit">
+                        <span class="oi oi-play-circle icon"></span>
+                        <MatSnackbarContent Style="font-size:20px;color:#f7f7f7">Employee Registered Succesfully....!!!</MatSnackbarContent>
                     </a>
                 </MatSnackbar>
+
                 <MatSnackbar @bind-IsOpen="@snackBarReset">
-                        <MatSnackbarContent>Reseted Employee Data...!!!</MatSnackbarContent>
+                    <a class="snackbarReset">
+                        <span class="oi oi-reload icon"></span>
+                        <MatSnackbarContent Style="margin-left: 3px; font-size:20px;color:#f7f7f7">Reseted Employee Data...!!!</MatSnackbarContent>
+                    </a>
                 </MatSnackbar>
             </div>
         </EditForm>
     </form>
 </div>
 @code {
+    /// <summary>
+    /// Initializing Variables And Object
+    /// </summary>
     bool snackBarCancel = false;
     bool snackBarSubmit = false;
     bool snackBarReset = false;
     EmployeeModel employee = new EmployeeModel();
 
+    /// <summary>
+    /// Method To Validate On Form Submit
+    /// </summary>
+    protected void HandleValidSubmit()
+    {
+        Console.WriteLine("OnValidSubmit");
+    }
+
+    /// <summary>
+    /// Method To Add Employee To Database
+    /// </summary>
     protected void AddEmp()
     {
         employeeBL.AddEmployee(employee);
         snackBarSubmit = true;
         this.StateHasChanged();
-        //Thread.Sleep(5000);
-        //navigate.NavigateTo("HomePage");
     }
 
+    /// <summary>
+    /// Method To Add Employee To Employee Model For Binding
+    /// </summary>
+    /// <param name="img"></param>
     protected void AddImg(string img)
     {
         employee.ProfileImg = img;
     }
 
+    /// <summary>
+    /// Method To Cancel Form Submission
+    /// </summary>
     void Cancel()
     {
         snackBarCancel = true;
         this.StateHasChanged();
-        //Thread.Sleep(5000);
-        //navigate.NavigateTo("HomePage");
+        GoBack();
     }
 
+    /// <summary>
+    /// Method To Reset Form Reset Data
+    /// </summary>
     void Reset()
     {
         snackBarReset = true;
         this.StateHasChanged();
-        //Thread.Sleep(5000);
-        //navigate.NavigateTo("Register");
+    }
+
+    /// <summary>
+    /// Method To Navigate To HomePage
+    /// </summary>
+    void GoBack()
+    {
+        navigate.NavigateTo("HomePage");
     }
 }

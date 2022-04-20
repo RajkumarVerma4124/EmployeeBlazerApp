@@ -75,9 +75,17 @@
 </div>
 
 @code {
+    /// <summary>
+    /// Initializing Variable And Declare Object 
+    /// </summary>
     IEnumerable<EmployeeModel> employeeList;
     int employeeCount;
     EmployeeModel employee = new EmployeeModel();
+
+    /// <summary>
+    /// Method To Get List Of Employee From DB On Page Load
+    /// </summary>
+    /// <returns></returns>
     protected override async Task OnInitializedAsync()
     {
         employeeList = await Task.Run(() => employeeBL.GetAllEmployee());

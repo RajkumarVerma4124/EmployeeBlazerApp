@@ -18,10 +18,21 @@ namespace RepositoryLayer.Services
         /// </summary>
         private MySqlConnection sqlConnection;
         private readonly IConfiguration configuration;
+
+        /// <summary>
+        /// Reference Object For IConfiguaration
+        /// </summary>
+        /// <param name="configuration"></param>
         public EmployeeRegisterRL(IConfiguration configuration)
         {
             this.configuration = configuration;
         }
+
+        /// <summary>
+        /// Method To Add Employee To The Database Table Using Mysql
+        /// </summary>
+        /// <param name="employee"></param>
+        /// <returns></returns>
         public EmployeeModel AddEmployee(EmployeeModel employee)
         {
             try
@@ -58,6 +69,11 @@ namespace RepositoryLayer.Services
             }
         }
 
+        /// <summary>
+        /// Method To Get Single Employee From The DB Table Using Mysql
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public EmployeeModel GetEmployee(int id)
         {
             try
@@ -99,6 +115,12 @@ namespace RepositoryLayer.Services
             }
         }
 
+        /// <summary>
+        /// Method To Get Employee Details From Db To Store Into Emp Models
+        /// </summary>
+        /// <param name="reader"></param>
+        /// <param name="employee"></param>
+        /// <returns></returns>
         private EmployeeModel PrintEmployeeDetails(MySqlDataReader reader, EmployeeModel employee)
         {
             employee.Id = Convert.ToInt32(reader["EmployeeId"] == DBNull.Value ? default : reader["EmployeeId"]);
@@ -113,6 +135,10 @@ namespace RepositoryLayer.Services
             return employee;
         }
 
+        /// <summary>
+        /// Method To Get List Of Employees From Db Tables Using Mysql
+        /// </summary>
+        /// <returns></returns>
         public IEnumerable<EmployeeModel> GetAllEmployee()
         {
             try
@@ -154,7 +180,7 @@ namespace RepositoryLayer.Services
         }
 
         /// <summary>
-        /// Method to update employee details of the db table
+        /// Method To Update Employee Details From The Db Table
         /// </summary>
         /// <param name="employee"></param>
         /// <returns></returns>
@@ -195,6 +221,11 @@ namespace RepositoryLayer.Services
             }
         }
 
+        /// <summary>
+        /// Method To Delete An Employee From Db Table Using Mysql
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public string DeleteEmployee(int id)
         {
             try

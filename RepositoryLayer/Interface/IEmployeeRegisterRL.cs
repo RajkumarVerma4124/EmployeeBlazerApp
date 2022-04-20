@@ -5,6 +5,9 @@ using System.Text;
 
 namespace RepositoryLayer.Interface
 {
+    /// <summary>
+    /// Created The Interface For EmployeeRegister Repository Layer Class
+    /// </summary>
     public interface IEmployeeRegisterRL
     {
         public EmployeeModel AddEmployee(EmployeeModel employee);

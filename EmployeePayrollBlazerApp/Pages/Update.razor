@@ -63,31 +63,32 @@
 
             <!--Creating the form element with input type checkbox to select department-->
             <div class="row-content">
-                <label class="label text label-bold" for="department"> Department</label>
+                <label class="label text label-bold" for="department">Department</label>
                 <select class="ip" name="department" id="department" @bind="@employee.Department" required>
                     <option value="--">-- Select Department --</option>
-                    <option value="it">Robotics</option>
-                    <option value="devops">Devops</option>
-                    <option value="Engineer">Web Developer</option>
+                    <option value="Robotics">Robotics</option>
+                    <option value="Devops">Devops</option>
+                    <option value="Web Developer">Web Developer</option>
                     <option value="Finance">Finance</option>
                     <option value="Business">Business</option>
-                    <option value="hr">HR</option>
-                    <option value="ml">Machine Learning</option>
+                    <option value="HR">HR</option>
+                    <option value="ML">Machine Learning</option>
                 </select>
             </div>
-            <!--Creating the form element with input type range to select salary(UC4)-->
+
+            <!--Creating the form element with input type range to select salary-->
             <div class="row-content">
                 <label class="label text label-bold" for="salary">Salary</label>
                 <input class="input input-salary" @bind="@employee.Salary" type="number" defaultvalue="360000" min="200000" max="800000" step="1000" required>
                 <error class="error" id="errorName"></error>
             </div>
-            <!--Creating the form element with select to select day, month and year(UC5)-->
+            <!--Creating the form element with select to select day, month and year-->
             <div class="row-content">
                 <label class="label text label-bold" for="startDate">Start Date</label>
                 <input class="input input-salary" @bind="@employee.StartDate" type="date" placeholder="" s />
                 <error id="errorDate" class="error errorDate" name="errorDate"></error>
             </div>
-            <!--Creating the form element with notes and buttons(UC6)-->
+            <!--Creating the form element with notes and buttons-->
             <div class="row-content">
                 <label class="label text label-bold" for="notes">Notes</label>
                 <textarea rows="4" class="input" @bind="@employee.Notes" placeholder="Enter Any Notes or Comments here" id="notes" style="height: 100px;" required></textarea>
@@ -95,16 +96,12 @@
             <div class="button_container">
                 <div class="buttons">
                     <button type="submit" @onclick="@UpdateEmployee" class="submit_button button" id="submitButton">Update</button>
-                    <button type="reset" @onclick="@Cancel" class="cancel_button button">Cancel</button>
+                    <button type="button" @onclick="@GoBack" class="cancel_button button" id="submitButton">Cancel</button>
                 </div>
-                <MatSnackbar @bind-IsOpen="@snackBarCancel">
-                    <a href="HomePage">
-                        <MatSnackbarContent>Click To Return To Home Page...!!!</MatSnackbarContent>
-                    </a>
-                </MatSnackbar>
                 <MatSnackbar @bind-IsOpen="@snackBarUpdate">
-                    <a href="HomePage">
-                        <MatSnackbarContent>Updated The Employee Successfully...!!!</MatSnackbarContent>
+                    <a href="HomePage" class="snackbarSubmit">
+                        <span class="oi oi-cloud-upload icon"></span>
+                        <MatSnackbarContent Style="font-size:20px;color:#f7f7f7">Updated The Employee Successfully...!!!</MatSnackbarContent>
                     </a>
                 </MatSnackbar>
             </div>
@@ -114,14 +111,27 @@
 
 
 @code {
+    [Parameter]
+    public string EmployeeId { get; set; }
+
+    /// <summary>
+    /// Initializing Variables And Object
+    /// </summary>
     bool snackBarUpdate = false;
-    bool snackBarCancel = false;
     EmployeeModel employee = new EmployeeModel();
+
+    /// <summary>
+    /// Method To Add Employee To Employee Model For Binding
+    /// </summary>
+    /// <param name="img"></param>
     protected void AddImg(string img)
     {
         employee.ProfileImg = img;
     }
 
+    /// <summary>
+    /// Method To Update Existing Employee
+    /// </summary>
     protected void UpdateEmployee()
     {
         employeeBL.UpdateEmployee(employee);
@@ -129,20 +139,18 @@
         this.StateHasChanged();
     }
 
-    [Parameter]
-    public string EmployeeId { get; set; }
-
+    /// <summary>
+    /// Method To Get Employee From DB On Page Load
+    /// </summary>
+    /// <returns></returns>
     protected override async Task OnInitializedAsync()
     {
         employee = await Task.Run(() => employeeBL.GetEmployee(Convert.ToInt32(EmployeeId)));
     }
 
-    void Cancel()
-    {
-        snackBarCancel = true;
-        this.StateHasChanged();
-    }
-
+    /// <summary>
+    /// Method To Navigate To HomePage
+    /// </summary>
     void GoBack()
     {
         //Thread.Start(1000);

@@ -1,11 +1,20 @@
 ﻿@page "/"
+<div class="form-content" style="align-items:center">
+    <form class="form">
+        <h1 class="form-head" style="font-size:25px">Hello, Employees.....!!!!</h1>
+        <p class="label-text label-bold" style="font-size:18px">Welcome to the blaze company. Hope you have a great time and experience here.</p>
+        <SurveyPrompt Title="How well is your coding...??? " />
+        <a href="Register">
+            <MatThemeProvider Theme="@theme1">
+                <MatButton Icon="touch_app" Outlined="true">Employee Registeration</MatButton>
+            </MatThemeProvider>
+        </a>
+    </form>
+</div>
 
-<h1>Hello, Employees.....!!!!</h1>
-
-Welcome to the blaze company. Hope you have a great time and experience here.
-
-<SurveyPrompt Title="How well is your coding...??? "/>
-
-<a href="Register">
-    <MatButton>Employee Registeration</MatButton>
-</a>
+@code {
+    MatTheme theme1 = new MatTheme()
+    {
+        Primary = "#82A70C"
+    };
+}

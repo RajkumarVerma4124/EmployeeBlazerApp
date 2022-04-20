@@ -48,16 +48,12 @@
             <div class="button_container">
                 <div class="buttons">
                     <button type="submit" @onclick="@DeleteEmployee" class="cancel_button button" id="submitButton">Delete</button>
-                    <button type="button" @onclick="@Cancel" class="submit_button button">Cancel</button>
+                    <button type="button" @onclick="@GoBack" class="reset_button button" id="submitButton">Cancel</button>
                 </div>
-                <MatSnackbar @bind-IsOpen="snackBarCancel">
-                    <a href="HomePage">
-                        <MatSnackbarContent>Canceled....Click To Return To Home Page...!!!</MatSnackbarContent>
-                    </a>
-                </MatSnackbar>
                 <MatSnackbar @bind-IsOpen="@snackBarDelete">
-                    <a href="HomePage">
-                        <MatSnackbarContent>Deleted The Employee Successfully...!!!</MatSnackbarContent>
+                    <a href="HomePage" class="snackbarCancel">
+                        <span class="oi oi-delete icon"></span>
+                        <MatSnackbarContent Style="font-size:20px;color:#f7f7f7">Deleted The Employee Successfully...!!!</MatSnackbarContent>
                     </a>
                 </MatSnackbar>
             </div>
@@ -66,35 +62,40 @@
 </div>
 
 @code {
-    bool snackBarDelete = false;
-    bool snackBarCancel = false;
+
     [Parameter]
     public string EmployeeId { get; set; }
 
+    /// <summary>
+    /// Initializing Variables And Object
+    /// </summary>
+    bool snackBarDelete = false;
     EmployeeModel employee = new EmployeeModel();
 
+    /// <summary>
+    /// Method To Get Employee From DB On Page Load
+    /// </summary>
+    /// <returns></returns>
     protected override async Task OnInitializedAsync()
     {
         employee = await Task.Run(() => employeeBL.GetEmployee(Convert.ToInt32(EmployeeId)));
     }
 
+    /// <summary>
+    /// Method To Delete An Employee
+    /// </summary>
     protected void DeleteEmployee()
     {
         employeeBL.DeleteEmployee(employee.Id);
         snackBarDelete = true;
         this.StateHasChanged();
-        // GoBack();
     }
 
-    void Cancel()
-    {
-        snackBarCancel = true;
-        this.StateHasChanged();
-    }
-
+    /// <summary>
+    /// Method To Navigate To HomePage
+    /// </summary>
     void GoBack()
     {
-        Thread.Sleep(5000);
         navigate.NavigateTo("HomePage");
     }
 }

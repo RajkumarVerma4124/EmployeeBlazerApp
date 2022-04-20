@@ -5,6 +5,9 @@ using System.Text;
 
 namespace BusinessLayer.Interface
 {
+    /// <summary>
+    /// Created The Interface For EmployeeRegister Business Layer Class
+    /// </summary>
     public interface IEmployeeRegisterBL
     {
         public EmployeeModel AddEmployee(EmployeeModel employee);
