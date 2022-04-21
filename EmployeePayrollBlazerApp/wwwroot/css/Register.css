@@ -365,18 +365,62 @@ select:hover {
     font-weight: 200;
 }
 
+.main {
+    display: block;
+    position: relative;
+    padding-left: 25px;
+    cursor: pointer;
+    font-size: 20px;
+}
+
 input[type=checkbox] {
-    inline-size: 20px;
+    visibility: hidden;
 }
 
-input.largerCheckbox {
-    accent-color: #82A70C;
-    width: 18px;
-    height: 18px;
-}
-
-input.largerCheckbox:hover{
+/* Creating a custom checkbox*/
+.checkmark {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    height: 20px;
+    width: 20px;
+    background-color: white;
     border: 1px solid #82A70C;
+}
+
+/* Specified the background color to be shown when hovering over checkbox */
+.main input ~ .checkmark:hover {
+    background-color: #82A70C;
+}
+/* Specified the background color to be shown when checkbox is checked */
+.main input:checked ~ .checkmark {
+    background-color: #82A70C;
+}
+
+/* Checkmark to be shown in checkbox */
+/* It is not be shown when not checked */
+.checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+}
+
+/* Display checkmark when checked */
+.main input:checked ~ .checkmark:after {
+    display: block;
+}
+
+/* Styling the checkmark using webkit */
+.main .checkmark:after {
+    left: 6px;
+    bottom: 5px;
+    width: 6px;
+    height: 12px;
+    border: solid white;
+    border-width: 0 4px 4px 0;
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
 }
 
 .mdc-radio__outer-circle {
@@ -411,26 +455,34 @@ input.largerCheckbox:hover{
     font-family: Roboto !important;
 }
 
-@media only screen and (max-width: 1337px)
+@media only screen and (max-width: 1320px)
 {
+    .row-content {
+        min-width: 60px;
+        padding: 12px 12px 12px 0px;
+        display: inline-block;
+    }   
+
     .salary {
-        width: 50%;
+        width: 80%;
     }
 
     .input-salary {
-        width: 50%;
+        width: 80%;
     }
 
     select {
-        width: 50%;
+        width: 80%;
     }
 }
+
+
 /*Defining media query*/
 @media only screen and (max-width: 1200px) {
     .row-content {
         min-width: 60px;
         padding: 12px 12px 12px 0px;
-        display: inline-block;
+        display: block;
     }
 
     .cancel_button {
@@ -447,8 +499,16 @@ input.largerCheckbox:hover{
         margin: 5px;
     }
 
+    .salary {
+        width: 50%;
+    }
+
     .input-salary {
-        width: 75%;
+        width: 50%;
+    }
+
+    select {
+        width: 50%;
     }
 
     .button {
@@ -466,13 +526,15 @@ input.largerCheckbox:hover{
     }
 
     .row-content {
-        flex-direction: column;
+        min-width: 60px;
+        padding: 12px 12px 12px 0px;
+        display: block;
     }
 
     .profile-checkbox-content {
-        margin: 5%;
+        margin-right: 5%;
         flex-direction: column;
-        flex-flow: wrap;
+        flex-wrap: wrap;
     }
 
     .profile {
@@ -481,6 +543,15 @@ input.largerCheckbox:hover{
 
     select {
         margin-bottom: 10px;
+        width: 75%;
+    }
+
+    .salary {
+        width: 50%;
+    }
+
+    .input-salary {
+        width: 50%;
     }
 
     .button_container {
@@ -498,35 +569,37 @@ input.largerCheckbox:hover{
         margin: 5px;
     }
 
-    .form_checkboxes {
-        margin: 5px;
-    }
-
     .input-salary {
         width: 75%;
     }
 
     input[type=checkbox] {
-        inline-size: 35px;
+        inline-size: 40px;
     }
 
     .label-bold {
         margin-right: 25px;
     }
+
+    .checkmark {
+        top: 15px;
+    }
+
 }
 
-@media only screen and (max-width: 900px) {
+@media only screen and (max-width: 1015px) {
     .row-content {
         flex-direction: column;
         flex-flow: nowrap;
     }
 
-    .label-bold {
-        margin-right: -65px;
+
+    .main {
+        padding-left: 0px;
     }
 }
 
-@media only screen and (max-width: 415px) {
+@media only screen and (max-width: 491px) {
     .label-bold {
         margin-right: 25px;
     }
@@ -539,7 +612,7 @@ input.largerCheckbox:hover{
     select {
         display: block;
         margin: 5px;
-        width: 100%;
+        width: 85%;
     }
 
     .salary {
