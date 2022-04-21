@@ -30,6 +30,11 @@
                 <label class="label label-text"> @employee.Name</label>
             </div>
             <div class="row-content">
+                <label class="del-label">Profile Image : &nbsp &nbsp</label>
+                <img class="profile" style="margin-left:-3px;" src=@imgAddr />
+                <label class="label label-text"> @employee.Name 's Image</label>
+            </div>
+            <div class="row-content">
                 <label class="del-label">Gender : &nbsp</label>
                 <label class="label label-text"> @employee.Gender</label>
             </div>
@@ -65,7 +70,7 @@
 
     [Parameter]
     public string EmployeeId { get; set; }
-
+    string imgAddr;
     /// <summary>
     /// Initializing Variables And Object
     /// </summary>
@@ -79,6 +84,7 @@
     protected override async Task OnInitializedAsync()
     {
         employee = await Task.Run(() => employeeBL.GetEmployee(Convert.ToInt32(EmployeeId)));
+        imgAddr = employee.ProfileImg;
     }
 
     /// <summary>

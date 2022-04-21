@@ -87,10 +87,10 @@ app {
     padding-bottom: 1rem;
 }
 
-    .sidebar .nav-item .nav-link {
-        color: #42515F;
-        font-size: 1.0rem;
-    }
+.sidebar .nav-item .nav-link {
+    color: #42515F;
+    font-size: 1.0rem;
+}
 
 .sidebar .nav-item .nav-link:hover {
     font-size: 1.1rem;
@@ -114,7 +114,7 @@ app {
     background-color: #B8D564;
     color: white;
     letter-spacing: 0.2px;
-    font-weight: 100;
+    font-weight: 400;
 }
 
 .content {
@@ -170,7 +170,7 @@ app {
 }
 }
 
-@media (min-width: 768px) {
+@media (min-width: 832px) {
 app {
     flex-direction: row;
 }

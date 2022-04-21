@@ -36,8 +36,7 @@ namespace EmployeePayrollBlazerApp
             services.AddMatBlazor();
             services.AddSingleton<WeatherForecastService>();
             services.AddTransient<IEmployeeRegisterBL, EmployeeRegisterBL>();
-            services.AddTransient<IEmployeeRegisterRL, EmployeeRegisterRL>();
-        
+            services.AddTransient<IEmployeeRegisterRL, EmployeeRegisterRL>();        
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -30,10 +30,10 @@ body {
     justify-content: start;
 }
 
-    .logo-content > img {
-        border: 0px solid #82A70C;
-        margin-right: 5px;
-    }
+.logo-content > img {
+    border: 0px solid #82A70C;
+    margin-right: 5px;
+}
 
 a {
     text-decoration: none;
@@ -57,7 +57,6 @@ a {
     color: #42515F;
 }
 
-
 /*Defined css properties for form and input name*/
 
 .form-content {
@@ -65,7 +64,7 @@ a {
     background-color: #f7f7f7;
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-content: center;
     border: 0px solid #82A70C;
 }
 
@@ -80,11 +79,11 @@ a {
     margin: 5% 0%;
 }
 
-    .form:hover {
-        box-shadow: 0px 0px 15px #111;
-        transform: scale(1.01);
-        transition-duration: 0.5s;
-    }
+.form:hover {
+    box-shadow: 0px 0px 15px #111;
+    transform: scale(1.01);
+    transition-duration: 0.5s;
+}
 
 .form-head {
     font: normal normal bold 28px/37px Roboto;
@@ -132,9 +131,14 @@ a {
     color: rgb(216, 216, 216);
     opacity: 1;
     font-family: Roboto;
+    color: #42515f;
 }
 
 .input:focus {
+    border: 1px solid #82A70C;
+}
+
+.input:hover {
     border: 1px solid #82A70C;
 }
 
@@ -161,7 +165,7 @@ a {
     width: 40px;
     border-radius: 50%;
     margin-left: 12px;
-    margin-right: 30px;
+    margin-right: 20px;
 }
 
 .profile:hover {
@@ -172,11 +176,16 @@ a {
 
 
 /*Defined css properties for form and input type radio for gender*/
+.label-bold{
+    font-weight: bold;
+}
 
 
 .label-bold:hover {
     color: #42515F;
     font-weight: bold;
+    transition-duration: 0.5s;
+    font-size: 18px;
 }
 
 .del-label {
@@ -202,25 +211,25 @@ a {
     min-width: 100px;
 }
 
-    .form_checkboxes > label {
-        margin: 2px;
-    }
+.form_checkboxes > label {
+    margin: 2px;
+}
 
 
 /*Defined css properties for form and input type range for salary*/
 
 .salary {
-    width: 70%;
+    width: 30%;
 }
 
 .input-salary {
-    width: 25%;
+    width: 30%;
 }
 
 /*Defined css properties for select for day, month and year*/
 
 select {
-    padding: 10px 12px;
+    padding: 14px;
     border: 1px solid #ccc;
     border-radius: 4px;
     resize: vertical;
@@ -228,9 +237,19 @@ select {
     font: normal normal bold 16px Roboto;
     color: #42515f;
     background-color: transparent;
-    min-width: 100px;
+    width: 30%;
     outline: none;
     margin-right: 15px;
+    border-radius: 8px;
+    font-weight: 500;
+}
+
+select:active{
+    border-color: #82A70C;
+}
+
+select:hover {
+    border-color: #82A70C;
 }
 
 
@@ -261,14 +280,14 @@ select {
     text-align: center;
 }
 
-    .button:hover {
-        box-shadow: 0px 0px 15px #111;
-        transform: scale(1.1);
-        transition-duration: 0.5s;
-        border: none;
-        background-color: #82A70C;
-        color: white;
-    }
+.button:hover {
+    box-shadow: 0px 0px 15px #111;
+    transform: scale(1.1);
+    transition-duration: 0.5s;
+    border: none;
+    background-color: #82A70C;
+    color: white;
+}
 
 .submit_button {
     margin-right: 30px;
@@ -284,14 +303,14 @@ select {
     opacity: 1;
 }
 
-    .cancel_button:hover {
-        box-shadow: 0px 0px 15px #111;
-        transform: scale(1.1);
-        transition-duration: 0.5s;
-        background-color: rgb(157, 84, 84);
-        color: white;
-        outline: none;
-    }
+.cancel_button:hover {
+    box-shadow: 0px 0px 15px #111;
+    transform: scale(1.1);
+    transition-duration: 0.5s;
+    background-color: rgb(157, 84, 84);
+    color: white;
+    outline: none;
+}
 
 .reset_button:hover {
     box-shadow: 0px 0px 15px #42515F;
@@ -343,9 +362,70 @@ select {
 .icon {
     color: #f7f7f7;
     margin-left: 3px;
+    font-weight: 200;
 }
 
-/*Defining media query(UC6)*/
+input[type=checkbox] {
+    inline-size: 20px;
+}
+
+input.largerCheckbox {
+    accent-color: #82A70C;
+    width: 18px;
+    height: 18px;
+}
+
+input.largerCheckbox:hover{
+    border: 1px solid #82A70C;
+}
+
+.mdc-radio__outer-circle {
+    border-color: #82A70C !important;
+    width: 100% !important;
+    height: 100% !important;
+}
+
+.mdc-radio__inner-circle {
+    border-color: #82A70C !important;
+    width: 100% !important;
+    height: 100% !important;
+}
+
+.input {
+    padding: 14px;
+    border: 1px solid rgb(241, 241, 241);
+    color: #42515f;
+    font-size: 16px;
+}
+
+
+.mdc-form-field > label {
+    font-family: Roboto !important;
+    margin-right: 8px !important;
+    margin-top: 10px;
+    font-size: 16px;
+}
+
+.mdc-form-field > label:hover {
+    color: #82A70C;
+    font-family: Roboto !important;
+}
+
+@media only screen and (max-width: 1337px)
+{
+    .salary {
+        width: 50%;
+    }
+
+    .input-salary {
+        width: 50%;
+    }
+
+    select {
+        width: 50%;
+    }
+}
+/*Defining media query*/
 @media only screen and (max-width: 1200px) {
     .row-content {
         min-width: 60px;
@@ -373,6 +453,10 @@ select {
 
     .button {
         margin: 10px;
+    }
+
+    input[type=checkbox] {
+        inline-size: 35px;
     }
 }
 
@@ -421,9 +505,32 @@ select {
     .input-salary {
         width: 75%;
     }
+
+    input[type=checkbox] {
+        inline-size: 35px;
+    }
+
+    .label-bold {
+        margin-right: 25px;
+    }
 }
 
-@media only screen and (max-width: 410px) {
+@media only screen and (max-width: 900px) {
+    .row-content {
+        flex-direction: column;
+        flex-flow: nowrap;
+    }
+
+    .label-bold {
+        margin-right: -65px;
+    }
+}
+
+@media only screen and (max-width: 415px) {
+    .label-bold {
+        margin-right: 25px;
+    }
+
     .button {
         display: block;
         margin: 5px;
@@ -432,10 +539,20 @@ select {
     select {
         display: block;
         margin: 5px;
+        width: 100%;
+    }
+
+    .salary {
+        width: 90%;
+    }
+
+    .input-salary {
+        width: 90%;
     }
 }
 
-@media only screen and (max-width: 380px) {
+@media only screen and (max-width: 395px) {
+
     .button {
         display: block;
         margin: 5px;
@@ -444,5 +561,14 @@ select {
     select {
         display: block;
         margin: 5px;
+        width: 100%;
+    }
+
+    .salary {
+        width: 90%;
+    }
+
+    .input-salary {
+        width: 90%;
     }
 }
