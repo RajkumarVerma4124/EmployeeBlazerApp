@@ -365,7 +365,7 @@ select:hover {
     font-weight: 200;
 }
 
-.main {
+.checkMain {
     display: block;
     position: relative;
     padding-left: 25px;
@@ -382,18 +382,19 @@ input[type=checkbox] {
     position: absolute;
     top: 10px;
     left: 10px;
-    height: 20px;
-    width: 20px;
+    height: 21px;
+    width: 21px;
     background-color: white;
     border: 1px solid #82A70C;
+    border-radius: 5px;
 }
 
 /* Specified the background color to be shown when hovering over checkbox */
-.main input ~ .checkmark:hover {
+.checkMain input ~ .checkmark:hover {
     background-color: #82A70C;
 }
 /* Specified the background color to be shown when checkbox is checked */
-.main input:checked ~ .checkmark {
+.checkMain input:checked ~ .checkmark {
     background-color: #82A70C;
 }
 
@@ -406,18 +407,19 @@ input[type=checkbox] {
 }
 
 /* Display checkmark when checked */
-.main input:checked ~ .checkmark:after {
+.checkMain input:checked ~ .checkmark:after {
     display: block;
 }
 
 /* Styling the checkmark using webkit */
-.main .checkmark:after {
-    left: 6px;
+.checkMain .checkmark:after {
+    left: 7px;
     bottom: 5px;
-    width: 6px;
+    padding: 1px;
+    width: 5px;
     height: 12px;
     border: solid white;
-    border-width: 0 4px 4px 0;
+    border-width: 0 3px 3px 0;
     -webkit-transform: rotate(45deg);
     -ms-transform: rotate(45deg);
     transform: rotate(45deg);
@@ -594,7 +596,7 @@ input[type=checkbox] {
     }
 
 
-    .main {
+    .checkMain {
         padding-left: 0px;
     }
 }
